@@ -3,7 +3,7 @@
 #include <string.h>
 
 struct x {
-	int a[8];
+	int a[13];
 	char b[16];
 };
 
@@ -16,15 +16,14 @@ int hexdump(char* p, int n)
 		printf("%p ", p);
 		for (i = 0;i < 16;i++)
 		{
-			if (i < n)printf("%x ", *(p+i));
+			if (i < n)printf("%02x ", *(p+i));
 
 		}
 		printf("|");
 		for (i = 0;i < 16;i++)
 		{   
 			if (i < n) {
-				if (p[i] > 127||p[i]<0)printf(".");
-				else if (p[i] < 10)printf("%d", p[i]);
+				if (p[i] > 127||p[i]<32)printf(".");
 				else 	printf("%c", *(p+i));
 			}
 
@@ -40,12 +39,12 @@ int main()
 {
 	struct x a;
 	memset(a.b, '.', sizeof(a.b));
-	memset(a.a, 0, sizeof(a.a));
+	memset(a.a, 2, sizeof(a.a));
 	int n=0;
 	a.b[0] ='a' ;
 	a.a[0] = 3;
 	char * p=&a;
-	hexdump(p,sizeof(struct x)+sizeof(n));
+	hexdump(p,sizeof(struct x));
 	return 0;
 
 }
