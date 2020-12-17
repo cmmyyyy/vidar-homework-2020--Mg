@@ -12,21 +12,23 @@ void test(int** pp)
 }
 int main()
 {
-	int** pp[10][20];
-	int i,j,a;
-	int* p[10][20];
+	int** pp;
+	int i,j;
+	int*p[10];
 	int x[10][20];
 	
 	for (i = 0;i < 10;i++)
 		{
 		for (j = 0;j < 20;j++)
 			{
-			x[i][j] = i*10+j;
-			p[i][j] = &x[i][j];
-			pp[i][j] = &p[i][j];
+			x[i][j] = i*20+j;
+
 			}
+		p[i] = &x[i][0];
 		}
-	test(pp[0][0]);
+
+	pp = &p[0];
+	test(pp);
 	return 0;
 
 }
